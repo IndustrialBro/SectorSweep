@@ -35,11 +35,15 @@ public sealed class CommandInterpreter : MonoBehaviour
         {
             if (Instance.comDic[command].HandleArgs(args))
             {
-                foreach(CommandListener l in listeners)
+                if (Instance.comDic[command].specArg > -1)
                 {
-                    if(l.id == Instance.comDic[command].savedArgs[0])
+                    int specArg = Instance.comDic[command].specArg;
+                    foreach (CommandListener l in listeners)
                     {
-                        Instance.comDic[command].Execute(l.gameObject);
+                        if (l.id == Instance.comDic[command].savedArgs[specArg])
+                        {
+                            Instance.comDic[command].Execute(l.gameObject);
+                        }
                     }
                 }
             }

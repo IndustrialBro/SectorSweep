@@ -8,7 +8,7 @@ public class MarchToCommand : Command
 {
     public override void Execute(GameObject executor)
     {
-        Tile targetTile = GridDoohickey.Instance.RequestTile(savedArgs[1]);
+        Tile targetTile = GridDoohickey.Instance.RequestTile(savedArgs[0]);
 
         if (targetTile != null )
         {
@@ -20,10 +20,11 @@ public class MarchToCommand : Command
     public override bool HandleArgs(string[] args)
     {
         if(args.Length != 2) return false;
-        if (!args[0].StartsWith("u")) return false;
-        if (!args[1].StartsWith("t")) return false;
+        if (!args[0].StartsWith("t")) return false;
+        if (!args[1].StartsWith("u")) return false;
 
         savedArgs = args;
+        specArg = 1;
         return true;
     }
 }

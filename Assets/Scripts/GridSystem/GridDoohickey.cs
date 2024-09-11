@@ -12,9 +12,10 @@ public sealed class GridDoohickey : MonoBehaviour
     [SerializeField]
     GameObject tilePrefab;
 
-    List<Tile> tiles = new List<Tile>();
+    List<Tile> tiles;
     private void Start()
     {
+        Instance.tiles = new List<Tile>();
         SpawnGrid();
     }
 
