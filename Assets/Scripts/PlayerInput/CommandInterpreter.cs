@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +17,7 @@ public sealed class CommandInterpreter : MonoBehaviour
 
     CLIscript cli;
 
-    List<CommandListener> listeners = new List<CommandListener>();
-
+    public event Action<Command> SendCommand;
     private void Start()
     {
         SetUpComDic();
@@ -35,17 +35,7 @@ public sealed class CommandInterpreter : MonoBehaviour
         {
             if (Instance.comDic[command].HandleArgs(args))
             {
-                if (Instance.comDic[command].specArg > -1)
-                {
-                    int specArg = Instance.comDic[command].specArg;
-                    foreach (CommandListener l in listeners)
-                    {
-                        if (l.id == Instance.comDic[command].savedArgs[specArg])
-                        {
-                            Instance.comDic[command].Execute(l.gameObject);
-                        }
-                    }
-                }
+                SendCommand?.Invoke(Instance.comDic[command]);
             }
             else
             {
@@ -65,10 +55,4 @@ public sealed class CommandInterpreter : MonoBehaviour
             Instance.comDic.Add(commandNames[i].ToLower(), commands[i]);
         }
     }
-
-    public void AddListener(CommandListener listener)
-    {
-        listeners.Add(listener);
-    }
-
 }

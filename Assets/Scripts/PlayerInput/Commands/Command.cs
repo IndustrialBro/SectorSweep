@@ -8,4 +8,8 @@ public abstract class Command : ScriptableObject
     public int specArg { get; protected set; } = -1;
     public abstract bool HandleArgs(string[] args);
     public abstract void Execute(GameObject executor);
+    public Command Duplicate()
+    {
+        return this.MemberwiseClone() as Command;
+    }
 }

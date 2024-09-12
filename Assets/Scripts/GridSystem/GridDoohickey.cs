@@ -37,7 +37,7 @@ public sealed class GridDoohickey : MonoBehaviour
 
                 if (t.IsAboveGround())
                 {
-                    t.name = $"t{temp}";
+                    t.SetName($"t{temp}");
                     Instance.tiles.Add(t);
                     temp++;
                 }

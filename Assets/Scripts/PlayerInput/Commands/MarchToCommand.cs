@@ -13,7 +13,10 @@ public class MarchToCommand : Command
         if (targetTile != null )
         {
             NavMeshAgent agent = executor.GetComponent<NavMeshAgent>();
-            agent.SetDestination(targetTile.transform.position);
+            float x = targetTile.transform.position.x + Random.Range(-1.5f, 1.5f);
+            float z = targetTile.transform.position.z + Random.Range(-1.5f, 1.5f);
+            Vector3 targetPos = new Vector3( x, targetTile.transform.position.y, z);
+            agent.SetDestination(targetPos);
         }
     }
 
@@ -21,7 +24,7 @@ public class MarchToCommand : Command
     {
         if(args.Length != 2) return false;
         if (!args[0].StartsWith("t")) return false;
-        if (!args[1].StartsWith("u")) return false;
+        if (!(args[1].StartsWith("u") || args[1] == "all")) return false;
 
         savedArgs = args;
         specArg = 1;
