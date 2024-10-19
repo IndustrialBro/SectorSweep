@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EyeScript : MonoBehaviour
@@ -56,6 +57,15 @@ public class EyeScript : MonoBehaviour
 
         if (angle < detAngle)
             return true;
+        return false;
+    }
+
+    public bool CheckIfVisible(GameObject go)
+    {
+        if(CheckForUnits(out GameObject[] detectedObjects))
+        {
+            if(detectedObjects.Contains(go)) return true;
+        }
         return false;
     }
 }

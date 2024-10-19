@@ -20,6 +20,11 @@ public abstract class StateMachine : MonoBehaviour
     protected abstract void InitStates();
     public void SwitchStates(State newState)
     {
-        currState = newState;
+        if(currState.canExit)
+        {
+            currState.OnStateExit();
+            currState = newState;
+            currState.OnStateEnter();
+        }
     }
 }

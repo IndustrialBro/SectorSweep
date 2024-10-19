@@ -1,35 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class InCombatState : State
 {
-    EyeScript e;
-
-    public InCombatState(StateMachine mother) : base(mother)
+    GameObject target;
+    float maxInterval = 2, currInterval;
+    public InCombatState(StateMachine mother, HealthScript hs, NavMeshAgent agent, GameObject target, EyeScript eye) : base(mother, hs, agent, eye)
     {
+        this.target = target;
     }
 
-    public override void OnHit()
-    {
-
-    }
 
     public override void OnStateEnter()
     {
-        e = mother.GetComponent<EyeScript>();
+        agent.updateRotation = false;
+    }
+
+    public override void OnStateExit()
+    {
+        agent.updateRotation = true;
     }
 
     public override void OnUpdate()
     {
-        if(e.CheckForUnits(out GameObject[] go))
+        UpdateRotation();
+
+        CheckIfTargetIsVisible();
+    }
+    void UpdateRotation()
+    {
+        Vector3 targetDir = target.transform.position - mother.transform.position;
+
+        if (mother.transform.forward != targetDir)
         {
-            //pøidá detekované jednotky do seznamu cílù
+            Vector3 newDir = Vector3.RotateTowards(mother.transform.forward, targetDir, 6 * Time.deltaTime, 0);
+
+            mother.transform.rotation = Quaternion.LookRotation(newDir);
         }
-        else
+        //Pokud je terè/cíl/whatever v urèitém úhlu vùèí mother.transform.forward tak ho napumpuj olovem
+        
+    }
+    void CheckIfTargetIsVisible()
+    {
+        if(eye.CheckIfVisible(target))
         {
-            ReadyState rs = new ReadyState(mother);
-            mother.SwitchStates(rs);
+            currInterval = maxInterval;
+        } else
+        {
+            currInterval -= Time.deltaTime;
         }
+
+        if (currInterval < 0)
+            mother.SwitchStates(new ReadyState(mother, hs, agent, eye));
     }
 }
