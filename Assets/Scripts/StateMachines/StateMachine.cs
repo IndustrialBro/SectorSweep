@@ -27,4 +27,8 @@ public abstract class StateMachine : MonoBehaviour
             currState.OnStateEnter();
         }
     }
+    public override string ToString()
+    {
+        return $"{gameObject.name}'s state machine";
+    }
 }

@@ -6,16 +6,21 @@ using UnityEngine.AI;
 public class InCombatState : State
 {
     GameObject target;
+    GunScript gun;
     float maxInterval = 2, currInterval;
-    public InCombatState(StateMachine mother, HealthScript hs, NavMeshAgent agent, GameObject target, EyeScript eye) : base(mother, hs, agent, eye)
+    public InCombatState(StateMachine mother, HealthScript hs, NavMeshAgent agent, GameObject target, EyeScript eye, GunScript gun) : base(mother, hs, agent, eye)
     {
         this.target = target;
+        this.gun = gun;
     }
 
 
     public override void OnStateEnter()
     {
         agent.updateRotation = false;
+        agent.speed = 1;
+        
+        Debug.Log($"{mother} has entered the In Combat State");
     }
 
     public override void OnStateExit()
@@ -32,6 +37,7 @@ public class InCombatState : State
     void UpdateRotation()
     {
         Vector3 targetDir = target.transform.position - mother.transform.position;
+        targetDir = new(targetDir.x, 0, targetDir.z);
 
         if (mother.transform.forward != targetDir)
         {
@@ -39,8 +45,12 @@ public class InCombatState : State
 
             mother.transform.rotation = Quaternion.LookRotation(newDir);
         }
-        //Pokud je terè/cíl/whatever v urèitém úhlu vùèí mother.transform.forward tak ho napumpuj olovem
         
+        //Pokud je terè/cíl/whatever v urèitém úhlu vùèí mother.transform.forward tak ho napumpuj olovem
+        if(Vector3.Angle(mother.transform.forward, targetDir) < 7)
+        {
+            gun.Fire(target.tag);
+        }
     }
     void CheckIfTargetIsVisible()
     {

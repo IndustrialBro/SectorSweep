@@ -12,6 +12,9 @@ public class ReadyState : State
 
     public override void OnStateEnter()
     {
+        Debug.Log($"{mother} has entered the Ready State");
+
+        agent.speed = 3;
     }
 
     public override void OnStateExit()
@@ -23,7 +26,7 @@ public class ReadyState : State
     {
         if(eye.CheckForUnits(out GameObject[] go))
         {
-            InCombatState ics = new InCombatState(mother, hs, agent, GetNearestUnit(go), eye);
+            InCombatState ics = new InCombatState(mother, hs, agent, GetNearestUnit(go), eye, mother.GetComponentInChildren<GunScript>());
             mother.SwitchStates(ics);
         }
     }

@@ -46,5 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandNames:
   - marchto
+  - daggers
   commands:
   - {fileID: 11400000, guid: 287b1aa1bb9071d4185f5f24cd6add35, type: 2}
+  - {fileID: 11400000, guid: 3a92c93c8eb8744458c3e49b7e25d708, type: 2}

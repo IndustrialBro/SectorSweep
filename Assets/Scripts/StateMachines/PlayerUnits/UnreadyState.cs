@@ -12,7 +12,9 @@ public class UnreadyState : State
 
     public override void OnStateEnter()
     {
-        
+        Debug.Log($"{mother} has entered the Unready State");
+
+        agent.speed = 5;
     }
     public override void OnStateExit()
     {
@@ -22,12 +24,6 @@ public class UnreadyState : State
     public override void OnUpdate()
     {
 
-    }
-    public override void OnHit(int dmg, GameObject attacker)
-    {
-        base.OnHit(dmg, attacker);
-        InCombatState ics = new InCombatState(mother, hs, agent, attacker, eye);
-        mother.SwitchStates(ics);
     }
 
 }

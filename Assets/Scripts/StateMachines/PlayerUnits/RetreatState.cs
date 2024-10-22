@@ -5,23 +5,32 @@ using UnityEngine.AI;
 
 public class RetreatState : State
 {
-    public RetreatState(StateMachine mother, HealthScript hs, NavMeshAgent agent, EyeScript eye) : base(mother, hs, agent, eye)
+    Vector3 targetLoc;
+    public RetreatState(StateMachine mother, HealthScript hs, NavMeshAgent agent, EyeScript eye, Vector3 targetLoc) : base(mother, hs, agent, eye)
     {
+        this.targetLoc = targetLoc;
     }
 
 
     public override void OnStateEnter()
     {
-        throw new System.NotImplementedException();
+        canExit = false;
+        
+        agent.speed = 6;
+        Debug.Log($"{mother} has entered the Retreat State");
     }
 
     public override void OnStateExit()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void OnUpdate()
     {
-        throw new System.NotImplementedException();
+        if(Vector3.Distance(mother.transform.position, targetLoc) < 3)
+        {
+            canExit = true;
+            mother.SwitchStates(new UnreadyState(mother, hs, agent, eye));
+        }
     }
 }

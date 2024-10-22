@@ -25,5 +25,7 @@ public abstract class State
     public virtual void OnHit(int dmg, GameObject attacker) 
     {
         hs.GetHurt(dmg);
+        InCombatState ics = new InCombatState(mother, hs, agent, attacker, eye, mother.GetComponentInChildren<GunScript>());
+        mother.SwitchStates(ics);
     }
 }

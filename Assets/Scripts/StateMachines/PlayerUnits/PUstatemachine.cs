@@ -11,5 +11,6 @@ public class PUstatemachine : StateMachine
         defaultState = new(this, GetComponent<HealthScript>(), GetComponent<NavMeshAgent>(), GetComponent<EyeScript>());
 
         currState = defaultState;
+        currState.OnStateEnter();
     }
 }
