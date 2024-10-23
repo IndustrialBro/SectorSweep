@@ -35,9 +35,11 @@ public class GunScript : MonoBehaviour
         {
             if (hit.collider.tag == tarTag)
             {
-                hit.collider.GetComponent<HealthScript>().GetHurt(dmg);
+                hit.collider.GetComponent<HealthScript>()?.GetHurt(dmg);
             }
         }
+        
+        shotInterval = 1 / rps;
     }
 
     Vector3 GetTrajectory()

@@ -36,12 +36,18 @@ public class InCombatState : State
     }
     void UpdateRotation()
     {
+        if (target == null)
+        {
+            mother.SwitchStates(new ReadyState(mother, hs, agent, eye));
+            return;
+        }
+
         Vector3 targetDir = target.transform.position - mother.transform.position;
         targetDir = new(targetDir.x, 0, targetDir.z);
 
         if (mother.transform.forward != targetDir)
         {
-            Vector3 newDir = Vector3.RotateTowards(mother.transform.forward, targetDir, 6 * Time.deltaTime, 0);
+            Vector3 newDir = Vector3.RotateTowards(mother.transform.forward, targetDir, 3 * Time.deltaTime, 0);
 
             mother.transform.rotation = Quaternion.LookRotation(newDir);
         }
