@@ -17,7 +17,7 @@ public class SwitchStateCommand : Command
         agent = executor.GetComponent<NavMeshAgent>();
         eye = executor.GetComponent<EyeScript>();
 
-        switch (savedArgs[1])
+        switch (savedArgs[0])
         {
             case "free":
                 mother.SwitchStates(new ReadyState(mother, hs, agent, eye)); break;
@@ -28,13 +28,11 @@ public class SwitchStateCommand : Command
 
     public override bool HandleArgs(string[] args)
     {
-        // daggers {jednotka} {free/sheathed}
-        if(args.Length != 2) return false;
-        if (!(args[0].StartsWith('u') || args[0] == "all")) return false;
-        if (args[1] != "free" && args[1] != "sheathed") return false;
+        // {jednotka} daggers {free/sheathed}
+        if (args.Length != 1) return false;
+        if (args[0] != "free" && args[0] != "sheathed") return false;
 
         savedArgs = args;
-        specArg = 0;
         return true;
     }
 }

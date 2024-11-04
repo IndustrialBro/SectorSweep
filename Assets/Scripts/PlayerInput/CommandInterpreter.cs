@@ -17,7 +17,6 @@ public sealed class CommandInterpreter : MonoBehaviour
 
     CLIscript cli;
 
-    public event Action<Command> SendCommand;
     private void Start()
     {
         SetUpComDic();
@@ -28,14 +27,17 @@ public sealed class CommandInterpreter : MonoBehaviour
     {
         this.cli = cli;
     }
-    public void InterpretCommand(string command, string[] args)
+    public void InterpretCommand(string command, string[] args, CommandListener[] units)
     {
        
         if (Instance.comDic.ContainsKey(command))
         {
             if (Instance.comDic[command].HandleArgs(args))
             {
-                SendCommand?.Invoke(Instance.comDic[command]);
+                foreach(CommandListener unit in units)
+                {
+                    unit.OnCommandSent(Instance.comDic[command]);
+                }
             }
             else
             {

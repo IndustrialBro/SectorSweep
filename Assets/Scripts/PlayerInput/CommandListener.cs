@@ -10,15 +10,11 @@ public class CommandListener : MonoBehaviour
     public string id { get; private set; }
     private void Start()
     {
-        CommandInterpreter.Instance.SendCommand += OnCommandSent;
+        ComListThingamabob.Instance.AddListener(this);
     }
 
-    private void OnCommandSent(Command command)
+    public void OnCommandSent(Command command)
     {
-        int i = command.specArg;
-        if (i > -1 && (command.savedArgs[i] == id || command.savedArgs[i] == "all")) 
-        {
-            command.Duplicate().Execute(gameObject);
-        }
+        command.Duplicate().Execute(gameObject);
     }
 }

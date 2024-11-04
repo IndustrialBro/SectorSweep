@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3430992558393243539}
   - component: {fileID: 720319111744307594}
+  - component: {fileID: 8992982144602570314}
   m_Layer: 0
   m_Name: CommandInterpretor
   m_TagString: Untagged
@@ -50,3 +51,15 @@ MonoBehaviour:
   commands:
   - {fileID: 11400000, guid: 287b1aa1bb9071d4185f5f24cd6add35, type: 2}
   - {fileID: 11400000, guid: 3a92c93c8eb8744458c3e49b7e25d708, type: 2}
+--- !u!114 &8992982144602570314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422210596747881954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37a1e165295be6499d0764053094f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

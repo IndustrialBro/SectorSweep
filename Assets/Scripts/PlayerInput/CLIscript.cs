@@ -35,16 +35,18 @@ public class CLIscript : MonoBehaviour
     }
     public void SendCommand(string input)
     {
+        // jednotky pøíkaz argumenty
         ShowOutput(input);
 
         string[] splitInput = input.Split(' ');
+        string[] units = splitInput[0].Split(',');
         List<string> args = new List<string>();
-        for(int i = 1; i < splitInput.Length; i++)
+        for(int i = 2; i < splitInput.Length; i++)
         {
             args.Add(splitInput[i].ToLower());
         }
 
-        CommandInterpreter.Instance.InterpretCommand(splitInput[0].ToLower(), args.ToArray());
+        CommandInterpreter.Instance.InterpretCommand(splitInput[1].ToLower(), args.ToArray(), ComListThingamabob.Instance.GetListeners(units));
 
         
     }

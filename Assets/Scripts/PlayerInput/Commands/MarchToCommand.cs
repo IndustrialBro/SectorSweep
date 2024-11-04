@@ -22,12 +22,10 @@ public class MarchToCommand : Command
 
     public override bool HandleArgs(string[] args)
     {
-        if(args.Length != 2) return false;
+        if(args.Length != 1) return false;
         if (!args[0].StartsWith("t")) return false;
-        if (!(args[1].StartsWith("u") || args[1] == "all")) return false;
 
         savedArgs = args;
-        specArg = 1;
         return true;
     }
 }
