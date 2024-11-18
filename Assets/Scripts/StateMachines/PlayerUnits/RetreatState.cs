@@ -6,11 +6,12 @@ using UnityEngine.AI;
 public class RetreatState : State
 {
     Vector3 targetLoc;
-    public RetreatState(StateMachine mother, HealthScript hs, NavMeshAgent agent, EyeScript eye, Vector3 targetLoc) : base(mother, hs, agent, eye)
+    State nextState;
+    public RetreatState(StateMachine mother, HealthScript hs, NavMeshAgent agent, EyeScript eye, Vector3 targetLoc, State nextState) : base(mother, hs, agent, eye)
     {
         this.targetLoc = targetLoc;
+        this.nextState = nextState;
     }
-
 
     public override void OnStateEnter()
     {
@@ -30,7 +31,7 @@ public class RetreatState : State
         if(Vector3.Distance(mother.transform.position, targetLoc) < 3)
         {
             canExit = true;
-            mother.SwitchStates(new UnreadyState(mother, hs, agent, eye));
+            mother.SwitchStates(nextState);
         }
     }
 }

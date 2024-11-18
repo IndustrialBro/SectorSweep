@@ -22,10 +22,8 @@ public abstract class State
     public abstract void OnUpdate();
     public abstract void OnStateEnter();
     public abstract void OnStateExit();
-    public virtual void OnHit(int dmg, GameObject attacker) 
+    public virtual void OnHit(int dmg, GameObject attacker)
     {
         hs.GetHurt(dmg);
-        InCombatState ics = new InCombatState(mother, hs, agent, attacker, eye, mother.GetComponentInChildren<GunScript>());
-        mother.SwitchStates(ics);
     }
 }

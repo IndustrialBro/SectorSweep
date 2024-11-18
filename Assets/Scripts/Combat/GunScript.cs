@@ -5,10 +5,10 @@ using UnityEngine;
 public class GunScript : MonoBehaviour
 {
     [SerializeField]
-    float cone;
-    float shotInterval;
+    float cone, rps;
+    float shotInterval = 0;
     [SerializeField]
-    int dmg, rps;
+    int dmg;
     [SerializeField]
     Transform barrel;
     // Start is called before the first frame update
@@ -16,13 +16,12 @@ public class GunScript : MonoBehaviour
     {
         //Já osobnì radiány nerad ale ok ig
         cone *= 3.14f / 180;
-        shotInterval = 1 / rps;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(barrel.position, GetTrajectory() * 10);
+        Debug.DrawRay(barrel.position, GetTrajectory() * 30);
         shotInterval -= Time.deltaTime;
     }
 
@@ -31,15 +30,15 @@ public class GunScript : MonoBehaviour
         if (shotInterval > 0)
             return;
 
-        if(Physics.Raycast(barrel.position, GetTrajectory(), out RaycastHit hit))
+        if(Physics.Raycast(barrel.position, GetTrajectory(), out RaycastHit hit, 30))
         {
             if (hit.collider.tag == tarTag)
             {
-                hit.collider.GetComponent<HealthScript>()?.GetHurt(dmg);
+                hit.collider.GetComponent<StateMachine>()?.OnHit(dmg, gameObject);
             }
         }
         
-        shotInterval = 1 / rps;
+        shotInterval = 1f / rps;
     }
 
     Vector3 GetTrajectory()

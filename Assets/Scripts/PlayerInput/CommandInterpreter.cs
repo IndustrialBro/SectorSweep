@@ -15,18 +15,12 @@ public sealed class CommandInterpreter : MonoBehaviour
 
     Dictionary<string, Command> comDic = new Dictionary<string, Command>();
 
-    CLIscript cli;
-
     private void Start()
     {
         SetUpComDic();
 
     }
 
-    public void SetCLI(CLIscript cli)
-    {
-        this.cli = cli;
-    }
     public void InterpretCommand(string command, string[] args, CommandListener[] units)
     {
        
@@ -41,12 +35,17 @@ public sealed class CommandInterpreter : MonoBehaviour
             }
             else
             {
-                cli.ShowOutput($"ERROR : Invalid arguments \"{args}\" for command \"{command}\"");
+                string err = "";
+                foreach(string arg in args)
+                {
+                    err += arg + " ";
+                }
+                CLIscript.Instance.ShowOutput($"ERROR : Invalid arguments \"{err}\" for command \"{command}\"");
             }
         }
         else
         {
-            cli.ShowOutput($"ERROR : Unrecognized command \"{command}\"");
+            CLIscript.Instance.ShowOutput($"ERROR : Unrecognized command \"{command}\"");
         }
     }
 

@@ -57,4 +57,8 @@ public sealed class GridDoohickey : MonoBehaviour
         }
         return null;
     }
+    public Tile GetRandomTile()
+    {
+        return tiles[Random.Range(0, tiles.Count)];
+    }
 }

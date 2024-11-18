@@ -6,8 +6,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CLIscript : MonoBehaviour
+public sealed class CLIscript : MonoBehaviour
 {
+    public static CLIscript Instance { get; private set; } = null;
+    private CLIscript() { if (Instance == null) Instance = this; }
+
     [SerializeField]
     TMP_Text output;
     [SerializeField]
@@ -16,7 +19,6 @@ public class CLIscript : MonoBehaviour
     Regex r = new Regex(" ");
     private void Start()
     {
-        CommandInterpreter.Instance.SetCLI(this);
         iField.ActivateInputField();
     }
     private void Update()
@@ -47,8 +49,6 @@ public class CLIscript : MonoBehaviour
         }
 
         CommandInterpreter.Instance.InterpretCommand(splitInput[1].ToLower(), args.ToArray(), ComListThingamabob.Instance.GetListeners(units));
-
-        
     }
     public void ShowOutput(string o)
     {

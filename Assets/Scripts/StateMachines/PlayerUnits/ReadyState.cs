@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ReadyState : State
+public class ReadyState : PlayerState
 {
     public ReadyState(StateMachine mother, HealthScript hs, NavMeshAgent agent, EyeScript eye) : base(mother, hs, agent, eye)
     {
@@ -26,7 +26,7 @@ public class ReadyState : State
     {
         if(eye.CheckForUnits(out GameObject[] go))
         {
-            InCombatState ics = new InCombatState(mother, hs, agent, GetNearestUnit(go), eye, mother.GetComponentInChildren<GunScript>());
+            InCombatState ics = new InCombatState(mother, hs, agent, GetNearestUnit(go), eye, mother.GetComponentInChildren<GunScript>(), this);
             mother.SwitchStates(ics);
         }
     }

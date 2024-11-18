@@ -4,10 +4,11 @@ using UnityEngine;
 
 public sealed class ComListThingamabob : MonoBehaviour
 {
-    public static ComListThingamabob Instance { get; private set; }
-    private ComListThingamabob() { if(Instance == null)Instance = this; }
+    public static ComListThingamabob Instance { get; private set; } = null;
+    private ComListThingamabob() { Instance = this; }
 
     List<CommandListener> commandListeners = new List<CommandListener>();
+
 
     public void AddListener(CommandListener listener)
     {

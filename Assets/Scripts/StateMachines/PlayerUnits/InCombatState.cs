@@ -7,11 +7,13 @@ public class InCombatState : State
 {
     GameObject target;
     GunScript gun;
+    State nextState;
     float maxInterval = 2, currInterval;
-    public InCombatState(StateMachine mother, HealthScript hs, NavMeshAgent agent, GameObject target, EyeScript eye, GunScript gun) : base(mother, hs, agent, eye)
+    public InCombatState(StateMachine mother, HealthScript hs, NavMeshAgent agent, GameObject target, EyeScript eye, GunScript gun, State nextState) : base(mother, hs, agent, eye)
     {
         this.target = target;
         this.gun = gun;
+        this.nextState = nextState;
     }
 
 
@@ -19,7 +21,8 @@ public class InCombatState : State
     {
         agent.updateRotation = false;
         agent.speed = 1;
-        
+
+        currInterval = maxInterval;
         Debug.Log($"{mother} has entered the In Combat State");
     }
 
@@ -38,7 +41,7 @@ public class InCombatState : State
     {
         if (target == null)
         {
-            mother.SwitchStates(new ReadyState(mother, hs, agent, eye));
+            mother.SwitchStates(nextState);
             return;
         }
 
@@ -69,6 +72,6 @@ public class InCombatState : State
         }
 
         if (currInterval < 0)
-            mother.SwitchStates(new ReadyState(mother, hs, agent, eye));
+            mother.SwitchStates(nextState);
     }
 }

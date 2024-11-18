@@ -27,6 +27,10 @@ public abstract class StateMachine : MonoBehaviour
             currState.OnStateEnter();
         }
     }
+    public void OnHit(int dmg, GameObject attacker)
+    {
+        currState.OnHit(dmg, attacker);
+    }
     public override string ToString()
     {
         return $"{gameObject.name}'s state machine";
