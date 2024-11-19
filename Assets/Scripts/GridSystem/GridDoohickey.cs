@@ -5,7 +5,7 @@ using UnityEngine;
 public sealed class GridDoohickey : MonoBehaviour
 {
     public static GridDoohickey Instance { get; private set; }
-    private GridDoohickey() { if(Instance == null)Instance = this; }
+    private GridDoohickey() {}
 
     [SerializeField]
     int xCount, yCount;
@@ -13,6 +13,12 @@ public sealed class GridDoohickey : MonoBehaviour
     GameObject tilePrefab;
 
     List<Tile> tiles;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
     private void Start()
     {
         Instance.tiles = new List<Tile>();

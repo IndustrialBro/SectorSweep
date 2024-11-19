@@ -6,7 +6,7 @@ using UnityEngine;
 public sealed class CommandInterpreter : MonoBehaviour
 {
     public static CommandInterpreter Instance { get; private set; }
-    private CommandInterpreter() { if(Instance == null)Instance = this; }
+    private CommandInterpreter() {}
 
     [SerializeField]
     List<string> commandNames = new List<string>();
@@ -14,6 +14,12 @@ public sealed class CommandInterpreter : MonoBehaviour
     List<Command> commands = new List<Command>();
 
     Dictionary<string, Command> comDic = new Dictionary<string, Command>();
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     private void Start()
     {

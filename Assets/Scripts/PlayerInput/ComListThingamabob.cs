@@ -4,11 +4,16 @@ using UnityEngine;
 
 public sealed class ComListThingamabob : MonoBehaviour
 {
-    public static ComListThingamabob Instance { get; private set; } = null;
-    private ComListThingamabob() { Instance = this; }
+    public static ComListThingamabob Instance { get; private set; }
+    private ComListThingamabob() {  }
 
     List<CommandListener> commandListeners = new List<CommandListener>();
 
+    private void Awake()
+    {
+        if(Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     public void AddListener(CommandListener listener)
     {

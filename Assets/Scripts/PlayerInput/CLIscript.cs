@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public sealed class CLIscript : MonoBehaviour
 {
     public static CLIscript Instance { get; private set; } = null;
-    private CLIscript() { if (Instance == null) Instance = this; }
+    private CLIscript() {}
 
     [SerializeField]
     TMP_Text output;
@@ -17,6 +17,12 @@ public sealed class CLIscript : MonoBehaviour
     TMP_InputField iField;
 
     Regex r = new Regex(" ");
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
     private void Start()
     {
         iField.ActivateInputField();
@@ -28,7 +34,7 @@ public sealed class CLIscript : MonoBehaviour
         {
             string noWhiteSpace = r.Replace(iField.text, "");
             
-            if(noWhiteSpace != "")
+            if(noWhiteSpace != string.Empty)
                 SendCommand(iField.text);
 
             iField.text = "";
