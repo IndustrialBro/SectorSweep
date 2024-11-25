@@ -487,7 +487,7 @@ MonoBehaviour:
   eye: {fileID: 6469773739964210786}
   visTag: Enemy
   visDist: 20
-  detAngle: 60
+  detAngle: 75
 --- !u!114 &1889070469000617422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,8 +529,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cone: 3
-  dmg: 2
   rps: 1
+  dmg: 2
   barrel: {fileID: 6628924888831102260}
 --- !u!114 &2309677593004768696
 MonoBehaviour:

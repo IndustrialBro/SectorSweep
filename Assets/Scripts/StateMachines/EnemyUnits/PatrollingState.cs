@@ -13,8 +13,6 @@ public class PatrollingState : EnemyState
     public override void OnStateEnter()
     {
         agent.speed = 5;
-        //currDest = GridDoohickey.Instance.GetRandomTile();
-        //agent.SetDestination(currDest);
     }
 
     public override void OnStateExit()
@@ -33,10 +31,12 @@ public class PatrollingState : EnemyState
 
         if(eye.CheckForUnits(out GameObject[] units))
         {
-            if (units.Length > GetTotalBravery())
+            Debug.Log($"Detected units: {units.Length}, Total bravery: {GetTotalBravery()}");
+            if (units.Length > GetTotalBravery() && GetEscapePoint(out Vector3 point))
             {
                 //uteèe
-                Debug.Log("Utíkej, Forreste, utíkej!");
+                Debug.Log($"Escape point: x{point.x} x{point.y} x{point.z}");
+                mother.SwitchStates(new RetreatState(mother, hs, agent, eye, point, this));
             }
             else
             {
@@ -47,7 +47,7 @@ public class PatrollingState : EnemyState
     }
     int GetTotalBravery()
     {
-        int tb = mother.bravery;
+        int tb = 0;
         Collider[] colls = Physics.OverlapSphere(mother.transform.position, 20);
         foreach(Collider coll in colls)
         {
@@ -69,5 +69,22 @@ public class PatrollingState : EnemyState
             }
         }
         return nearest;
+    }
+    bool GetEscapePoint(out Vector3 point)
+    {
+        Collider[] colls = Physics.OverlapSphere(mother.transform.position, 50f, 1 << LayerMask.NameToLayer("EscapePoints"));
+        if(colls.Length > 0)
+        {
+            point = colls[0].transform.position;
+            foreach(Collider candidate in colls)
+            {
+                if(Vector3.Distance(mother.transform.position, candidate.transform.position) > Vector3.Distance(mother.transform.position, point))
+                    point = candidate.transform.position;
+            }
+
+            return true;
+        }
+        point = Vector3.zero;
+        return false;
     }
 }

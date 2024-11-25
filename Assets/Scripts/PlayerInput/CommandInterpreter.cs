@@ -36,7 +36,8 @@ public sealed class CommandInterpreter : MonoBehaviour
             {
                 foreach(CommandListener unit in units)
                 {
-                    unit.OnCommandSent(Instance.comDic[command]);
+                    if(unit != null)
+                        unit.OnCommandSent(Instance.comDic[command]);
                 }
             }
             else

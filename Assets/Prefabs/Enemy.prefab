@@ -234,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 3792193908450366427}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.916, z: 1.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -366,7 +366,7 @@ MonoBehaviour:
   eye: {fileID: 1744587740481501001}
   visTag: Player
   visDist: 20
-  detAngle: 60
+  detAngle: 75
 --- !u!195 &863517469906389371
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -417,8 +417,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cone: 10
-  dmg: 1
   rps: 2
+  dmg: 1
   barrel: {fileID: 7417207972778568372}
 --- !u!114 &4252018124226209143
 MonoBehaviour:
