@@ -28,7 +28,6 @@ public class RetreatState : State
 
     public override void OnUpdate()
     {
-        Debug.Log($"Distance: {Vector3.Distance(mother.transform.position, targetLoc)}");
         if(Vector3.Distance(mother.transform.position, targetLoc) < 3)
         {
             canExit = true;

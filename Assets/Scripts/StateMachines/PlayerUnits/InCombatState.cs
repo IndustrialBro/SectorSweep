@@ -15,6 +15,12 @@ public class InCombatState : State
         this.gun = gun;
         this.nextState = nextState;
     }
+    public InCombatState(StateMachine mother, HealthScript hs, NavMeshAgent agent, GameObject[] candidates, EyeScript eye, GunScript gun, State nextState) : base(mother, hs, agent, eye)
+    {
+        this.target = GetNearestUnit(candidates);
+        this.gun = gun;
+        this.nextState = nextState;
+    }
 
 
     public override void OnStateEnter()
@@ -73,5 +79,17 @@ public class InCombatState : State
 
         if (currInterval < 0)
             mother.SwitchStates(nextState);
+    }
+    GameObject GetNearestUnit(GameObject[] go)
+    {
+        GameObject nearest = go[0];
+        foreach (GameObject candidate in go)
+        {
+            if (Vector3.Distance(mother.transform.position, candidate.transform.position) < Vector3.Distance(mother.transform.position, nearest.transform.position))
+            {
+                nearest = candidate;
+            }
+        }
+        return nearest;
     }
 }

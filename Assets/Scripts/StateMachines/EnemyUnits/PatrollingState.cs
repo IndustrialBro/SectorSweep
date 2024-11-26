@@ -13,6 +13,7 @@ public class PatrollingState : EnemyState
     public override void OnStateEnter()
     {
         agent.speed = 5;
+        currDest = Vector3.zero;
     }
 
     public override void OnStateExit()
@@ -31,17 +32,16 @@ public class PatrollingState : EnemyState
 
         if(eye.CheckForUnits(out GameObject[] units))
         {
-            Debug.Log($"Detected units: {units.Length}, Total bravery: {GetTotalBravery()}");
             if (units.Length > GetTotalBravery() && GetEscapePoint(out Vector3 point))
             {
                 //uteèe
-                Debug.Log($"Escape point: x{point.x} x{point.y} x{point.z}");
-                mother.SwitchStates(new RetreatState(mother, hs, agent, eye, point, this));
+                DistressedState d = new DistressedState(mother, hs, agent, eye, this);
+                mother.SwitchStates(new RetreatState(mother, hs, agent, eye, point, d));
             }
             else
             {
                 //jde bojovat
-                mother.SwitchStates(new InCombatState(mother, hs, agent, GetNearestUnit(units), eye, mother.GetComponent<GunScript>(), this));
+                mother.SwitchStates(new InCombatState(mother, hs, agent, units, eye, mother.GetComponent<GunScript>(), this));
             }
         }
     }
@@ -57,18 +57,6 @@ public class PatrollingState : EnemyState
                 tb += temp.bravery;
         }
         return tb;
-    }
-    GameObject GetNearestUnit(GameObject[] go)
-    {
-        GameObject nearest = go[0];
-        foreach(GameObject candidate in go)
-        {
-            if(Vector3.Distance(mother.transform.position, candidate.transform.position) < Vector3.Distance(mother.transform.position, nearest.transform.position))
-            {
-                nearest = candidate;
-            }
-        }
-        return nearest;
     }
     bool GetEscapePoint(out Vector3 point)
     {

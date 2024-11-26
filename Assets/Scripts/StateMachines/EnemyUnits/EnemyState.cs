@@ -15,7 +15,8 @@ public abstract class EnemyState : State
     {
         base.OnHit(dmg, attacker);
         PatrollingState ps = new PatrollingState(mother, hs, agent, eye);
-        InCombatState ics = new InCombatState(mother, hs, agent, attacker, eye, mother.GetComponent<GunScript>(), ps);
+        DistressedState d = new DistressedState(mother, hs, agent, eye, ps);
+        InCombatState ics = new InCombatState(mother, hs, agent, attacker, eye, mother.GetComponent<GunScript>(), d);
         mother.SwitchStates(ics);
     }
 }
