@@ -68,4 +68,12 @@ public class EyeScript : MonoBehaviour
         }
         return false;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+    #if UNITY_EDITOR
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, visDist);
+    #endif
+    }
 }

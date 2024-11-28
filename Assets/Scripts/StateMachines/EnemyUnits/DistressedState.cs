@@ -9,6 +9,7 @@ public class DistressedState : EnemyState
     float checkAngle = 0.785f, timer = 15f;
     Vector3[] dirs = new Vector3[2];
     short curDir = 0;
+    bool isSetUp = false;
     EnemyState nextState;
     public DistressedState(EUnitStateMachine mother, HealthScript hs, NavMeshAgent agent, EyeScript eye, EnemyState nextState) : base(mother, hs, agent, eye)
     {
@@ -18,8 +19,12 @@ public class DistressedState : EnemyState
     public override void OnStateEnter()
     {
         agent.updateRotation = false;
-        dirs[0] = mother.transform.right * Mathf.Tan(checkAngle) - mother.transform.forward;
-        dirs[1] = -mother.transform.right * Mathf.Tan(checkAngle) - mother.transform.forward;
+        if(!isSetUp)
+        {
+            dirs[0] = mother.transform.right * Mathf.Tan(checkAngle) - mother.transform.forward;
+            dirs[1] = -mother.transform.right * Mathf.Tan(checkAngle) - mother.transform.forward;
+            isSetUp = true;
+        }
     }
     public override void OnUpdate()
     { 
