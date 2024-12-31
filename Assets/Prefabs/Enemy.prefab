@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 863517469906389371}
   - component: {fileID: 6964448512025175982}
   - component: {fileID: 1845897681115237304}
-  - component: {fileID: 4252018124226209143}
+  - component: {fileID: 2924830230688322775}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -420,7 +420,7 @@ MonoBehaviour:
   rps: 2
   dmg: 1
   barrel: {fileID: 7417207972778568372}
---- !u!114 &4252018124226209143
+--- !u!114 &2924830230688322775
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -429,7 +429,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5388856564003221752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b9b5d1b50604f542bc98b48b05a2448, type: 3}
+  m_Script: {fileID: 11500000, guid: cdbe68d3903a6ee4988d4082d6c9c584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 5

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Objective : ScriptableObject
+public abstract class Objective
 {
     public abstract void PrepareObjective(); // Pøipraví co je potøeba (oznaèí nepøítele na zabití, spawne tu vìc co musí ukrást, bla bla bvla)
-    public abstract bool CheckForSuccess(); // Zkontroluje jestli hráè splnil úkol
+    public virtual bool CheckForSuccess(GameObject go) { return true; } // Zkontroluje jestli hráè splnil úkol
 }

@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Reward : ScriptableObject
+public class Reward
 {
-    public abstract void Give();
+    public static Action HAU; // všichni se vyléèí
+    public static Action IMHP; // všem se zvýší maximální zdravobody ( a vyléèí se )
+    public static Action ID; // všem se zvýší poškození, které konají
 }

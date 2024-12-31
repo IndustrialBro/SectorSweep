@@ -47,12 +47,12 @@ public sealed class CommandInterpreter : MonoBehaviour
                 {
                     err += arg + " ";
                 }
-                CLIscript.Instance.ShowOutput($"ERROR : Invalid arguments \"{err}\" for command \"{command}\"");
+                CLIstateMachine.Instance.ShowOutput($"ERROR : Invalid arguments \"{err}\" for command \"{command}\"");
             }
         }
         else
         {
-            CLIscript.Instance.ShowOutput($"ERROR : Unrecognized command \"{command}\"");
+            CLIstateMachine.Instance.ShowOutput($"ERROR : Unrecognized command \"{command}\"");
         }
     }
 

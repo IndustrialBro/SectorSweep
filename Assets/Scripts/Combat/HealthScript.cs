@@ -5,10 +5,10 @@ using UnityEngine;
 public class HealthScript : MonoBehaviour
 {
     [SerializeField]
-    int maxHp;
-    int currHp;
+    protected int maxHp;
+    protected int currHp;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         currHp = maxHp;
     }
@@ -21,7 +21,7 @@ public class HealthScript : MonoBehaviour
             Die();
     }
 
-    void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
     }

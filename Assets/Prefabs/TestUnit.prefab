@@ -371,9 +371,9 @@ GameObject:
   - component: {fileID: 411204813525629121}
   - component: {fileID: 6772350436422364280}
   - component: {fileID: 1889070469000617422}
-  - component: {fileID: 1335495428703946485}
-  - component: {fileID: 3843847793596461309}
   - component: {fileID: 2309677593004768696}
+  - component: {fileID: 2416646269012986749}
+  - component: {fileID: 6959192710146059710}
   m_Layer: 7
   m_Name: TestUnit
   m_TagString: Player
@@ -503,35 +503,6 @@ MonoBehaviour:
   <points>k__BackingField:
   - {fileID: 5067925001664636305}
   - {fileID: 8193979041185039891}
---- !u!114 &1335495428703946485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9036972174249327585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b9b5d1b50604f542bc98b48b05a2448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 10
---- !u!114 &3843847793596461309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9036972174249327585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf8bb9099d8fa54290ad8b53586d366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cone: 3
-  rps: 1
-  dmg: 2
-  barrel: {fileID: 6628924888831102260}
 --- !u!114 &2309677593004768696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,3 +515,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad22e2e2fb317f48a8a84675d82f56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2416646269012986749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9036972174249327585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee406e0677391f41b8897def699595f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 10
+--- !u!114 &6959192710146059710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9036972174249327585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa347fae2750ab4998540d088f05e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cone: 3
+  rps: 1
+  dmg: 2
+  barrel: {fileID: 6628924888831102260}
