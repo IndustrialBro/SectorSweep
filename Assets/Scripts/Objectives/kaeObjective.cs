@@ -6,12 +6,39 @@ public class kaeObjective : Objective
 {
     public override void PrepareObjective()
     {
-        EnemyManager.Instance.AllDead += () => {
-            CLIstateMachine.Instance.EnterQueryState("Objective 'kill all enemies' achieved. Choose a reward:", 
-                    new HAUOption("Heal all units"), 
+        EnemyManager.Instance.AllDead += EndObjective;
+        CLIstateMachine.Instance.ShowOutput("NEW OBJECTIVE : Eliminate all threats in the area.");
+    }
+    void EndObjective()
+    {
+        EnemyManager.Instance.AllDead -= EndObjective;
+        CLIstateMachine.Instance.EnterQueryState("Objective 'Eliminate all threats' achieved. Choose a reward:",
+                    new HAUOption("Heal all units"),
                     new IMHPOption("Increase max HP of your units"),
                     new IDOption("Increase damage dealt by your units")
                 );
-        };
+    }
+}
+public class ktObjective : Objective
+{
+    GameObject target;
+    public override void PrepareObjective()
+    {
+        EnemyHealthScript.EnemyDied += EndObjective;
+        target = EnemyManager.Instance.GetRandomEnemy();
+        CLIstateMachine.Instance.ShowOutput("NEW OBJECTIVE : Eliminate specified target.");
+    }
+
+    void EndObjective(GameObject enemy)
+    {
+        if(enemy == target)
+        {
+            EnemyHealthScript.EnemyDied -= EndObjective;
+            CLIstateMachine.Instance.EnterQueryState("Objective 'Eliminate target' achieved. Choose a reward:",
+                    new HAUOption("Heal all units"),
+                    new IMHPOption("Increase max HP of your units"),
+                    new IDOption("Increase damage dealt by your units")
+                );
+        }
     }
 }

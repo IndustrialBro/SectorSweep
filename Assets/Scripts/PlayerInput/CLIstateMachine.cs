@@ -165,7 +165,8 @@ public class HAUOption : QOption
 
     public override void DoStuff()
     {
-        Reward.HAU.Invoke();
+        Reward.HAU?.Invoke();
+        ObjectiveManager.Instance.NextObjective();
     }
 }
 public class IDOption : QOption
@@ -176,7 +177,8 @@ public class IDOption : QOption
 
     public override void DoStuff()
     {
-        Reward.ID.Invoke();
+        Reward.ID?.Invoke();
+        ObjectiveManager.Instance.NextObjective();
     }
 }
 public class IMHPOption : QOption
@@ -187,6 +189,7 @@ public class IMHPOption : QOption
 
     public override void DoStuff()
     {
-        Reward.IMHP.Invoke();
+        Reward.IMHP?.Invoke();
+        ObjectiveManager.Instance.NextObjective();
     }
 }

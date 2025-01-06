@@ -10,7 +10,12 @@ public sealed class EnemyManager : MonoBehaviour
     private EnemyManager(){}
     public event Action AllDead;
 
+    [SerializeField]
+    GameObject enemyPrefab, unitFollower;
     List<GameObject> enemies = new List<GameObject>();
+
+    [SerializeField]
+    List<Transform> spawnPoints = new List<Transform>();
     private void Awake()
     {
         if(Instance == null)
@@ -24,11 +29,29 @@ public sealed class EnemyManager : MonoBehaviour
 
             if(enemies.Count == 0)
             {
-                AllDead.Invoke();
+                AllDead?.Invoke();
             }
         };
     }
 
     public void AddEnemy(GameObject go) { enemies.Add(go); }
     public int GetEnemyCount() { return enemies.Count; }
+    public GameObject GetRandomEnemy()
+    {
+        GameObject e;
+        if(enemies.Count > 0)
+        {
+            e = enemies[UnityEngine.Random.Range(0, enemies.Count)];
+        }
+        else
+        {
+            e = SpawnEnemy();
+        }
+        e.AddComponent<FollowedUnit>().SetUp("T", unitFollower);
+        return e;
+    }
+    GameObject SpawnEnemy()
+    {
+        return Instantiate(enemyPrefab, spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)].position, Quaternion.identity);
+    }
 }

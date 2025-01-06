@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerUnitHealthScript : HealthScript
 {
+    public static event Action PlayerUnitDied;
+    
     int baseMaxHp;
     protected override void Start()
     {
@@ -25,5 +28,13 @@ public class PlayerUnitHealthScript : HealthScript
         };
         base.Start();
         baseMaxHp = maxHp;
+
+        PlayerUnitStrawboss.Instance.AddPlayerUnit();
+    }
+
+    protected override void Die()
+    {
+        PlayerUnitDied?.Invoke();
+        base.Die();
     }
 }

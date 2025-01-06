@@ -14,4 +14,12 @@ public class FollowedUnit : MonoBehaviour
         GameObject nf = Instantiate(follower);
         nf.GetComponent<UnitFollower>().FollowUnit(this);
     }
+    public void SetUp(string unitName, GameObject follower)
+    {
+        if (string.IsNullOrEmpty(this.unitName))
+        {
+            this.unitName = unitName;
+        }
+        this.follower = follower;
+    }
 }

@@ -14,6 +14,10 @@ public class UnitFollower : MonoBehaviour
         {
             transform.position = utf.transform.position;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void FollowUnit(FollowedUnit unit)
