@@ -10,10 +10,14 @@ public sealed class ObjectiveManager : MonoBehaviour
 
     public event Action AllObjectivesAchieved;
 
-    Objective[] objectives = {new kaeObjective(), new ktObjective()};
+    Objective[] objectives = {new kaeObjective(), new ktObjective(), new ctfObjective()};
     Queue<Objective> oQueue = new Queue<Objective>();
     [SerializeField]
     int numOfObjectives;
+    [SerializeField]
+    List<Transform> flagSpawnPoints = new List<Transform>();
+    [SerializeField]
+    GameObject flagPrafab;
     private void Awake()
     {
         if (Instance == null)
@@ -35,10 +39,9 @@ public sealed class ObjectiveManager : MonoBehaviour
             oQueue.Enqueue(objectives[UnityEngine.Random.Range(0, objectives.Length)]);
         }
     }
-    // Update is called once per frame
-    void Update()
+    public void SpawnFlag()
     {
-        
+        Instantiate(flagPrafab, flagSpawnPoints[UnityEngine.Random.Range(0, flagSpawnPoints.Count)].position, Quaternion.identity);
     }
     public void NextObjective()
     {
