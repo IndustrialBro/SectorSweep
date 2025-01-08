@@ -1319,6 +1319,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2980023965896165733, guid: f84c4d1219f1e4b41b94953be3e2f93a,
+        type: 3}
+      propertyPath: mmCam
+      value: 
+      objectReference: {fileID: 1884586919}
+    - target: {fileID: 2980023965896165733, guid: f84c4d1219f1e4b41b94953be3e2f93a,
+        type: 3}
+      propertyPath: maxSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2980023965896165733, guid: f84c4d1219f1e4b41b94953be3e2f93a,
+        type: 3}
+      propertyPath: minSize
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
