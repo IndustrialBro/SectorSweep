@@ -103,7 +103,7 @@ public class CommandState : CLIstate
         }
         else
         { //Pøíkaz není o trsání
-
+            CommandInterpreter.Instance.InterpretCommand(splitInput[0], GetArgs(splitInput, 1));
         }
     }
     string[] GetArgs(string[] a, int startIndex)

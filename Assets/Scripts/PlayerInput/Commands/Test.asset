@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709454479aae0a846a83ab2f2b88a2a2, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  dist: 5
+  <unitCommand>k__BackingField: 1

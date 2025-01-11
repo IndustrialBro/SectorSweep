@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32cdf4c6a272d834aa0594e0e5496a1a, type: 3}
-  m_Name: Daggers
+  m_Script: {fileID: 11500000, guid: c648feb74689b2d4887448e48ab8c2ef, type: 3}
+  m_Name: CamViewToggle
   m_EditorClassIdentifier: 
-  <unitCommand>k__BackingField: 1
+  <unitCommand>k__BackingField: 0

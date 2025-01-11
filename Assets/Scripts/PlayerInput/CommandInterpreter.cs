@@ -32,22 +32,29 @@ public sealed class CommandInterpreter : MonoBehaviour
        
         if (Instance.comDic.ContainsKey(command))
         {
-            if (Instance.comDic[command].HandleArgs(args))
+            if (Instance.comDic[command].unitCommand)
             {
-                foreach(CommandListener unit in units)
+                if (Instance.comDic[command].HandleArgs(args))
                 {
-                    if(unit != null)
-                        unit.OnCommandSent(Instance.comDic[command]);
+                    foreach (CommandListener unit in units)
+                    {
+                        if (unit != null)
+                            unit.OnCommandSent(Instance.comDic[command]);
+                    }
+                }
+                else
+                {
+                    string err = "";
+                    foreach (string arg in args)
+                    {
+                        err += arg + " ";
+                    }
+                    CLIstateMachine.Instance.ShowOutput($"ERROR : Invalid arguments \"{err}\" for command \"{command}\"");
                 }
             }
             else
             {
-                string err = "";
-                foreach(string arg in args)
-                {
-                    err += arg + " ";
-                }
-                CLIstateMachine.Instance.ShowOutput($"ERROR : Invalid arguments \"{err}\" for command \"{command}\"");
+                CLIstateMachine.Instance.ShowOutput($"ERROR : Command \"{command}\" cannot be executed by units");
             }
         }
         else
@@ -55,7 +62,36 @@ public sealed class CommandInterpreter : MonoBehaviour
             CLIstateMachine.Instance.ShowOutput($"ERROR : Unrecognized command \"{command}\"");
         }
     }
-
+    public void InterpretCommand(string command, string[] args)
+    {
+        if (Instance.comDic.ContainsKey(command))
+        {
+            if (!Instance.comDic[command].unitCommand)
+            {
+                if (Instance.comDic[command].HandleArgs(args))
+                {
+                    Instance.comDic[command].Execute(null);
+                }
+                else
+                {
+                    string err = "";
+                    foreach (string arg in args)
+                    {
+                        err += arg + " ";
+                    }
+                    CLIstateMachine.Instance.ShowOutput($"ERROR : Invalid arguments \"{err}\" for command \"{command}\"");
+                }
+            }
+            else
+            {
+                CLIstateMachine.Instance.ShowOutput($"ERROR : Command \"{command}\" requires units to execute");
+            }
+        }
+        else
+        {
+            CLIstateMachine.Instance.ShowOutput($"ERROR : Unrecognized command \"{command}\"");
+        }
+    }
     void SetUpComDic()
     {
         for(int i = 0; i < commandNames.Count && i < commands.Count; i++)

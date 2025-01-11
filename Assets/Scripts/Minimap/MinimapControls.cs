@@ -8,7 +8,7 @@ public class MinimapControls : MonoBehaviour
     [SerializeField]
     Camera mmCam;
     [SerializeField]
-    float scrollSpeed = 1, maxSize, minSize;
+    float scrollSpeed = 1, moveSpeed = 0.1f, maxSize, minSize;
 
     Vector2 mousePos;
     Vector2 lastMousePos = Vector2.zero;
@@ -55,7 +55,7 @@ public class MinimapControls : MonoBehaviour
         {
             if (lastMousePos != Vector2.zero)
             {
-                Vector2 v = (lastMousePos - mousePos) * 0.01f;
+                Vector2 v = (lastMousePos - mousePos).normalized * moveSpeed;
                 mmCam.transform.position = new Vector3(mmCam.transform.position.x + v.x, mmCam.transform.position.y, mmCam.transform.position.z + v.y);
             }
 

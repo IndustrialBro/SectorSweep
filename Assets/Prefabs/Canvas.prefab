@@ -186,6 +186,78 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!1 &1262844315969578036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4853274750928854418}
+  - component: {fileID: 3741961726233379152}
+  - component: {fileID: 3326376926620889706}
+  m_Layer: 5
+  m_Name: CamViewRawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4853274750928854418
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262844315969578036}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 414699974983025283}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 415, y: 1}
+  m_SizeDelta: {x: 750, y: 750}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3741961726233379152
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262844315969578036}
+  m_CullTransparentMesh: 1
+--- !u!114 &3326376926620889706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262844315969578036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 8400000, guid: 4e381251b64603b44b36581f434109c0, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &1777264001266662023
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +405,7 @@ GameObject:
   - component: {fileID: 5653009213165888158}
   - component: {fileID: 2448930646300538892}
   - component: {fileID: 1631557483267988764}
+  - component: {fileID: 411485924223706863}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -438,6 +511,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   output: {fileID: 3654818548135627842}
   iField: {fileID: 7789567533872765547}
+--- !u!114 &411485924223706863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2731492138508943360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77135dd8df743445bef16bc3af50160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camView: {fileID: 3326376926620889706}
+  cam: {fileID: 0}
 --- !u!1 &2905042686728138751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1281,7 @@ GameObject:
   - component: {fileID: 4938118111665643692}
   - component: {fileID: 2980023965896165733}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: MinimapRawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1266,6 +1353,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30855f1759d34194c866e585ab97f2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mmCam: {fileID: 0}
+  scrollSpeed: 1
+  moveSpeed: 0.25
+  maxSize: 20
+  minSize: 5
 --- !u!1 &7428588129157278605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,6 +1392,7 @@ RectTransform:
   - {fileID: 5086780084760015026}
   - {fileID: 4823888300191081658}
   - {fileID: 9144867795399957325}
+  - {fileID: 4853274750928854418}
   m_Father: {fileID: 2026808975250732691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
