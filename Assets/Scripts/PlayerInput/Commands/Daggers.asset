@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: Daggers
   m_EditorClassIdentifier: 
   <unitCommand>k__BackingField: 1
+  hints:
+  - <sequence>k__BackingField: 0
+    <hint>k__BackingField: free
+  - <sequence>k__BackingField: 0
+    <hint>k__BackingField: sheathed

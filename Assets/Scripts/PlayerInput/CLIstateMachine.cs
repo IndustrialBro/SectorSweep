@@ -11,7 +11,7 @@ public class CLIstateMachine : MonoBehaviour
     private CLIstateMachine() { }
 
     [SerializeField]
-    TMP_Text output;
+    TMP_Text output, hintText;
     [SerializeField]
     TMP_InputField iField;
 
@@ -28,6 +28,7 @@ public class CLIstateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hintText.text = "";
         iField.ActivateInputField();
         currState = cs;
     }
@@ -48,6 +49,20 @@ public class CLIstateMachine : MonoBehaviour
                 iField.ActivateInputField();
             }
         }
+        // špagety s nápovìdovou omajdou
+        if(Input.GetKeyDown(KeyCode.Tab) && !string.IsNullOrEmpty(hintText.text))
+        {
+            iField.text = hintText.text;
+            iField.caretPosition = iField.text.Length;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Backspace))
+            hintText.text = "";
+
+        if (Input.anyKeyDown && !string.IsNullOrEmpty(Input.inputString))
+        {
+            UpdateHintText();
+        }
     }
     public void ShowOutput(string o)
     {
@@ -61,6 +76,32 @@ public class CLIstateMachine : MonoBehaviour
     public void EnterCommandState()
     {
         currState = cs;
+    }
+    void UpdateHintText()
+    {
+        if (!string.IsNullOrEmpty(iField.text))
+        {
+            string[] splitInput = iField.text.Split(' ');
+            Regex r = new Regex("u[1-9]");
+
+            int i = 0;
+            for (int j = 0; j < splitInput.Length; j++)
+                if (r.IsMatch(splitInput[j])) i++;
+
+            List<string> strings = new List<string>();
+            for (; i < splitInput.Length; i++) strings.Add(splitInput[i]);
+
+            string hint = CommandInterpreter.Instance.UpdateHint(strings.ToArray());
+            if (!string.IsNullOrEmpty(hint))
+            {
+                char[] hintTextArray = new char[hint.Length - splitInput[splitInput.Length - 1].Length];
+                for (int j = 0; j < hintTextArray.Length; j++) hintTextArray[j] = hint[j + (hint.Length - hintTextArray.Length)];
+
+                hintText.text = iField.text + new string(hintTextArray);
+            }
+            else hintText.text = "";
+        }
+        else hintText.text = "";
     }
 }
 public abstract class CLIstate

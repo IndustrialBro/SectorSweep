@@ -99,4 +99,38 @@ public sealed class CommandInterpreter : MonoBehaviour
             Instance.comDic.Add(commandNames[i].ToLower(), commands[i]);
         }
     }
+    public string UpdateHint(string[] unitlessInput)
+    {
+        if (unitlessInput.Length == 0) return "";
+        char[] temp = unitlessInput[unitlessInput.Length-1].ToCharArray();
+        if (unitlessInput.Length > 1)
+        {
+            if (comDic.ContainsKey(unitlessInput[0]))
+            {
+                Command c = comDic[unitlessInput[0]];
+                for (int i = 0; i < c.Hints.Count; i++)
+                {
+                    if (CheckMatch(c.Hints[i].hint.ToCharArray(), temp)) return c.Hints[i].hint;
+                }
+            }
+        }
+        else
+        {
+            for(int i = 0; i < commandNames.Count; i++)
+            {
+                if (CheckMatch(commandNames[i].ToCharArray(), temp)) return commandNames[i];
+            }
+        }
+        return "";
+    }
+    bool CheckMatch(char[] hint, char[] input)
+    {
+        if (hint.Length < input.Length) return false;
+        
+        for(int i = 0;i < input.Length; i++)
+        {
+            if (hint[i] != input[i]) return false;
+        }
+        return true;
+    }
 }
