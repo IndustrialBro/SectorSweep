@@ -14,6 +14,11 @@ public abstract class Command : ScriptableObject
     [field : SerializeField]
     protected List<CommandHint> hints = new List<CommandHint>();
     public IReadOnlyList<CommandHint> Hints { get {  return hints; } }
+    
+    [field : SerializeField]
+    public string shortDesc { get; protected set; }
+    [field : SerializeField, Multiline]
+    public string longDesc { get; protected set; }
     public Command Duplicate()
     {
         return this.MemberwiseClone() as Command;

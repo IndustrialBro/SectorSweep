@@ -133,4 +133,21 @@ public sealed class CommandInterpreter : MonoBehaviour
         }
         return true;
     }
+    public bool IsCommand(string name) { return comDic.ContainsKey(name); }
+    public string GetCommandDesc()
+    {
+        string descriptions = "";
+        for(int i = 0; i < commandNames.Count; i++)
+        {
+            descriptions += $"{commandNames[i].ToUpper()} : {commands[i].shortDesc} \n";
+        }
+        return descriptions;
+    }
+    public string GetCommandDesc(string name)
+    {
+        if (comDic.ContainsKey(name.ToLower()))
+            return $"{name.ToUpper()} : {comDic[name.ToLower()].longDesc}";
+
+        return "";
+    }
 }

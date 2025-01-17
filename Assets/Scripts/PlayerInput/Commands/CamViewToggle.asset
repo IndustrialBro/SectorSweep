@@ -13,3 +13,14 @@ MonoBehaviour:
   m_Name: CamViewToggle
   m_EditorClassIdentifier: 
   <unitCommand>k__BackingField: 0
+  hints: []
+  <shortDesc>k__BackingField: Controls bodycams of units
+  <longDesc>k__BackingField: 'Cam
+
+    Cam <unit name>
+
+    If no units are specified
+    - switches between minimap and camera view
+
+    If units are specified - switches
+    camera view to specified unit'

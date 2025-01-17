@@ -18,3 +18,11 @@ MonoBehaviour:
     <hint>k__BackingField: free
   - <sequence>k__BackingField: 0
     <hint>k__BackingField: sheathed
+  <shortDesc>k__BackingField: Controls unit readyness
+  <longDesc>k__BackingField: '<unit name> daggers <free/sheathed>
+
+    free - unit
+    is actively looking for hostiles and is ready to engage
+
+    sheathed - unit
+    is not looking for hostiles, moves with alacrity'

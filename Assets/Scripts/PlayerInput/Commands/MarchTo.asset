@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: MarchTo
   m_EditorClassIdentifier: 
   <unitCommand>k__BackingField: 1
+  hints: []
+  <shortDesc>k__BackingField: moves units to specified tile
+  <longDesc>k__BackingField: '<unit name> marchto <tile>
+
+    Orders one or more
+    units to move towards specified tile'

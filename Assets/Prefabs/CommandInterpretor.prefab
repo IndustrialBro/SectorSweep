@@ -49,10 +49,12 @@ MonoBehaviour:
   - marchto
   - daggers
   - cam
+  - help
   commands:
   - {fileID: 11400000, guid: 287b1aa1bb9071d4185f5f24cd6add35, type: 2}
   - {fileID: 11400000, guid: 3a92c93c8eb8744458c3e49b7e25d708, type: 2}
   - {fileID: 11400000, guid: 0d931af93ed8f684a9a0fb59fcc5ff73, type: 2}
+  - {fileID: 11400000, guid: 9d65597e61c8f1747acc4d3af47fef9f, type: 2}
 --- !u!114 &8992982144602570314
 MonoBehaviour:
   m_ObjectHideFlags: 0
