@@ -42,9 +42,9 @@ public class CLIstateMachine : MonoBehaviour
 
             if(noWhiteSpace != string.Empty)
             {
+                ShowOutput(iField.text);
                 currState.OnSubmit(iField.text);
 
-                ShowOutput(iField.text);
                 iField.text = "";
                 iField.ActivateInputField();
             }

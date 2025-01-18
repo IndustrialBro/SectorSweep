@@ -22,8 +22,8 @@ public sealed class CamControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camView.gameObject.SetActive(false);
         SwitchMount("u1");
+        camView.gameObject.SetActive(false);
     }
     public void ShowHideCam()
     {
