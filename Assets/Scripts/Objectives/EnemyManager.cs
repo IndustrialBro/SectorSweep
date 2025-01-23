@@ -54,4 +54,11 @@ public sealed class EnemyManager : MonoBehaviour
     {
         return Instantiate(enemyPrefab, spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)].position, Quaternion.identity);
     }
+    public void RequestSpawnEnemy(int requestedAmmount, int maxAmmount)
+    {
+        if(enemies.Count + requestedAmmount < maxAmmount)
+        {
+            for(int i = 0; i < requestedAmmount; i++) SpawnEnemy();
+        }
+    }
 }

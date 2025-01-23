@@ -29,17 +29,17 @@ public sealed class CommandInterpreter : MonoBehaviour
 
     public void InterpretCommand(string command, string[] args, CommandListener[] units)
     {
-       
         if (Instance.comDic.ContainsKey(command))
         {
-            if (Instance.comDic[command].unitCommand)
+            Command c = Instance.comDic[command];
+            if (c.unitCommand)
             {
-                if (Instance.comDic[command].HandleArgs(args))
+                if (c.HandleArgs(args))
                 {
                     foreach (CommandListener unit in units)
                     {
                         if (unit != null)
-                            unit.OnCommandSent(Instance.comDic[command]);
+                            unit.OnCommandSent(c);
                     }
                 }
                 else
@@ -66,11 +66,12 @@ public sealed class CommandInterpreter : MonoBehaviour
     {
         if (Instance.comDic.ContainsKey(command))
         {
-            if (!Instance.comDic[command].unitCommand)
+            Command c = Instance.comDic[command];
+            if (!c.unitCommand)
             {
-                if (Instance.comDic[command].HandleArgs(args))
+                if (c.HandleArgs(args))
                 {
-                    Instance.comDic[command].Execute(null);
+                    c.Execute(null);
                 }
                 else
                 {

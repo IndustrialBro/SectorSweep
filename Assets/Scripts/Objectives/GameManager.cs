@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public sealed class GameManager : MonoBehaviour
 {
@@ -20,5 +22,19 @@ public sealed class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         sb.Show();
+    }
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+    }
+    public void ExitProgramme()
+    {
+        Application.Quit();
+    #if UNITY_EDITOR
+        if (EditorApplication.isPlaying)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+    #endif
     }
 }

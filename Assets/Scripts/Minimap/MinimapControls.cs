@@ -17,6 +17,7 @@ public class MinimapControls : MonoBehaviour
     {
         rt = GetComponent<RectTransform>();
         mmCam.orthographic = true;
+        mmCam.orthographicSize = maxSize;
     }
 
     // Update is called once per frame

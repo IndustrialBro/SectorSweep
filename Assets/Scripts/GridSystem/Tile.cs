@@ -7,12 +7,11 @@ public class Tile : MonoBehaviour
 {
     public float size { get; private set; } = 5;
     TMP_Text text;
-
     public static implicit operator Vector3(Tile t) => t.transform.position;
-
+    
     public bool IsAboveGround()
     {
-        if (Physics.Raycast(gameObject.transform.position, -transform.up, out RaycastHit hit))
+        if (Physics.Raycast(gameObject.transform.position, -transform.up, out RaycastHit hit) && hit.collider.gameObject.layer != LayerMask.NameToLayer("Wall"))
         {
             transform.position = hit.point;
             text = GetComponentInChildren<TMP_Text>();

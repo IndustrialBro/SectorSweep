@@ -25,5 +25,4 @@ public class UnreadyState : PlayerState
     {
 
     }
-
 }

@@ -86,7 +86,7 @@ public class CLIstateMachine : MonoBehaviour
 
             int i = 0;
             for (int j = 0; j < splitInput.Length; j++)
-                if (r.IsMatch(splitInput[j])) i++;
+                if (r.IsMatch(splitInput[j]) || splitInput[j] == "all") i++;
 
             List<string> strings = new List<string>();
             for (; i < splitInput.Length; i++) strings.Add(splitInput[i]);
@@ -177,10 +177,10 @@ public class QueryState : CLIstate
     }
     public override void OnSubmit(string input)
     {
-        if(int.TryParse(input, out int res) && res < options.Length)
+        if(uint.TryParse(input, out uint res) && res < options.Length)
         {
-            options[res].DoStuff();
             CLIstateMachine.Instance.EnterCommandState();
+            options[res].DoStuff();
         }else 
         {
             CLIstateMachine.Instance.ShowOutput("Please input a number within reason");

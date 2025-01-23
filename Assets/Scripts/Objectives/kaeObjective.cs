@@ -7,6 +7,7 @@ public class kaeObjective : Objective
     public override void PrepareObjective()
     {
         EnemyManager.Instance.AllDead += EndObjective;
+        EnemyManager.Instance.RequestSpawnEnemy(3, 10);
         CLIstateMachine.Instance.ShowOutput("NEW OBJECTIVE : Eliminate all threats in the area.");
     }
     protected override void EndObjective()

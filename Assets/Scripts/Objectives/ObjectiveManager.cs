@@ -3,22 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class ObjectiveManager : MonoBehaviour
+public class ObjectiveManager : MonoBehaviour
 {
-    public static ObjectiveManager Instance { get; private set; }
-    private ObjectiveManager() { }
+    public static ObjectiveManager Instance { get; protected set; }
+    protected ObjectiveManager() { }
 
     public event Action AllObjectivesAchieved;
 
-    Objective[] objectives = {new kaeObjective(), new ktObjective(), new ctfObjective()};
-    Queue<Objective> oQueue = new Queue<Objective>();
+    protected Objective[] objectives = { new kaeObjective(), new ktObjective(), new ctfObjective() };
+    protected Queue<Objective> oQueue = new Queue<Objective>();
     [SerializeField]
     int numOfObjectives;
     [SerializeField]
-    List<Transform> flagSpawnPoints = new List<Transform>();
+    protected List<Transform> flagSpawnPoints = new List<Transform>();
     [SerializeField]
-    GameObject flagPrafab;
-    private void Awake()
+    protected GameObject flagPrafab;
+    protected void Awake()
     {
         if (Instance == null)
             Instance = this;
@@ -32,7 +32,7 @@ public sealed class ObjectiveManager : MonoBehaviour
         PrepQueue();
         NextObjective();
     }
-    void PrepQueue()
+    protected virtual void PrepQueue()
     {
         for(int i = 0; i < numOfObjectives; i++)
         {
