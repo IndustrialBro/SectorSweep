@@ -8,6 +8,7 @@ public class ObjectiveManager : MonoBehaviour
     public static ObjectiveManager Instance { get; protected set; }
     protected ObjectiveManager() { }
 
+    public event Action ObjectiveAchieved;
     public event Action AllObjectivesAchieved;
 
     protected Objective[] objectives = { new kaeObjective(), new ktObjective(), new ctfObjective() };
@@ -45,6 +46,7 @@ public class ObjectiveManager : MonoBehaviour
     }
     public void NextObjective()
     {
+        ObjectiveAchieved?.Invoke();
         if (oQueue.Count > 0)
             oQueue.Dequeue().PrepareObjective();
         else

@@ -8,7 +8,7 @@ public sealed class CamControls : MonoBehaviour
     public static CamControls Instance { get; private set; }
     private CamControls() { }
     [SerializeField]
-    RawImage camView;
+    RawImage camView, mmView;
     [SerializeField]
     Camera cam;
     List<CameraMount> cameraMounts = new List<CameraMount>();
@@ -23,11 +23,17 @@ public sealed class CamControls : MonoBehaviour
     void Start()
     {
         SwitchMount("u1");
-        camView.gameObject.SetActive(false);
     }
     public void ShowHideCam()
     {
-        camView.gameObject.SetActive(!camView.gameObject.activeSelf);
+        Vector2 tempDim = camView.rectTransform.sizeDelta;
+        Vector2 tempLoc = camView.rectTransform.anchoredPosition;
+        
+        camView.rectTransform.sizeDelta = mmView.rectTransform.sizeDelta;
+        camView.rectTransform.anchoredPosition = mmView.rectTransform.anchoredPosition;
+
+        mmView.rectTransform.sizeDelta = tempDim;
+        mmView.rectTransform.anchoredPosition = tempLoc;
     }
     public void SwitchMount(string id)
     {

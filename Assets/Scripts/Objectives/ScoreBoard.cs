@@ -16,6 +16,7 @@ public class ScoreBoard : MonoBehaviour
     {
         EnemyHealthScript.EnemyDied += (GameObject go) => { enemiesKilled++; };
         PlayerUnitHealthScript.PlayerUnitDied += () => { lostUnits++; };
+        ObjectiveManager.Instance.ObjectiveAchieved += () => { achievedObjectives++; };
         ObjectiveManager.Instance.AllObjectivesAchieved += () => { wonOrLost = "MISSION ACCOMPLISHED"; };
         FlagScript.FlagTaken += () => { capturedFlags++; };
         gameObject.SetActive(false);
