@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5388856564003221752, guid: a36ae97e77095064c8dd443e676a92e4,
     type: 3}
-  unitFollower: {fileID: 161629883143071834, guid: 5e587c3588b92694b8cfddc1c0a39ddf,
+  unitFollower: {fileID: 161629883143071834, guid: 527b897c7ba4fb1408815f095f14491c,
     type: 3}
   spawnPoints:
   - {fileID: 0}

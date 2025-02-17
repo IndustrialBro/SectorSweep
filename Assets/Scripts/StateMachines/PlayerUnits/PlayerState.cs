@@ -5,8 +5,10 @@ using UnityEngine.AI;
 
 public abstract class PlayerState : State
 {
-    protected PlayerState(StateMachine mother, HealthScript hs, NavMeshAgent agent, EyeScript eye) : base(mother, hs, agent, eye)
+    protected new PUstatemachine mother;
+    protected PlayerState(PUstatemachine mother, HealthScript hs, NavMeshAgent agent, EyeScript eye) : base(mother, hs, agent, eye)
     {
+        this.mother = mother;
     }
     public override void OnHit(int dmg, GameObject attacker)
     {

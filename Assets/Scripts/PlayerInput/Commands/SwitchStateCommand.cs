@@ -6,13 +6,13 @@ using UnityEngine.AI;
 [CreateAssetMenu(fileName = "Daggers", menuName = "Orders/Daggers")]
 public class SwitchStateCommand : Command
 {
-    StateMachine mother;
+    PUstatemachine mother;
     HealthScript hs;
     NavMeshAgent agent;
     EyeScript eye;
     public override void Execute(GameObject executor)
     {
-        mother = executor.GetComponent<StateMachine>();
+        mother = executor.GetComponent<PUstatemachine>();
         hs = executor.GetComponent<HealthScript>();
         agent = executor.GetComponent<NavMeshAgent>();
         eye = executor.GetComponent<EyeScript>();

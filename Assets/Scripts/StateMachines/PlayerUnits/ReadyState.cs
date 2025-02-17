@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class ReadyState : PlayerState
 {
-    public ReadyState(StateMachine mother, HealthScript hs, NavMeshAgent agent, EyeScript eye) : base(mother, hs, agent, eye)
+    public ReadyState(PUstatemachine mother, HealthScript hs, NavMeshAgent agent, EyeScript eye) : base(mother, hs, agent, eye)
     {
     }
 
@@ -13,13 +13,13 @@ public class ReadyState : PlayerState
     public override void OnStateEnter()
     {
         Debug.Log($"{mother} has entered the Ready State");
-
+        mother.TogglePointer();
         agent.speed = 3;
     }
 
     public override void OnStateExit()
     {
-
+        mother.TogglePointer();
     }
 
     public override void OnUpdate()
